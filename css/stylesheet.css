@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+body{
+	background-color: #333333;
+	margin:0;
+	padding:0;
+	height: 100vh;
+	width:100vw;
+	font-family: Helvetica, sans-serif;
+}
+
+h1{
+	font-weight: bold;
+	font-size: 8vw;
+	text-shadow:1px 2px 3px black;
+}
+
+h2{
+	margin: 30px 10px 30px 10px;
+	text-align: center;
+	color: #F6CB11;
+	font-size: 24px;
+}
+
+h3{
+	color:#F6CB11;
+	line-height: 1.1;
+	font-size:14px;
+}
+
+p{
+	color:white;
+	line-height: 1.5;
+	font-size:16px;
+}
+
+.logo{
+	display:block;
+	margin:0 auto;
+	width:200px;
+}
+
+.btn {
+	bottom:0;
+	padding: 10px 20px;
+	background-color: #F6CB11;
+	color: #333333;
+	font-weight: bold;
+	font-size: 26px;
+	border-style: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn:hover{
+	background-color: #222222;
+	color:#F6CB11;
+	transition: 0.5s ease;
+}
+
+#btn_next1 , #btn_next2 , #btn_next3 , #btn_next4 , #btn_finish {
+	position: absolute;
+	bottom:0;
+	right:0;
+	margin:10px;
+}
+
+/************************* CONTAINER A - TITLE PAGE *************************/
+
+.conA{
+	min-height:450px; 
+	align-items: center;
+	justify-content:center;
+	background-position: center;
+	background-size:cover;
+}
+
+.conA .container {
+	margin-top: 20px;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	color: #F6CB11;
+	text-align: center;
+	max-width:1200px;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+.conA p{
+	margin:50px;
+}
+/*start button css */
+
+.conA #btn_start{
+	padding: 10px 20px;
+	background-color: #F6CB11;
+	color: #333333;
+	font-weight: bold;
+	font-size: 26px;
+	border-style: none;
+	border-radius: 5px;
+	cursor: pointer;
+
+}
+
+.conA #btn_start span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+
+}
+
+.conA #btn_start span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s ease;
+}
+
+.conA #btn_start:hover span {
+  padding-right: 25px;
+}
+
+.conA #btn_start:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/*background slider css */
+
+.conA .backgroundslide {
+	display:none;
+}
+
+.conA .slick-initialized {
+	display: block;
+}
+
+.conA .slideshow .slick-slide {
+  opacity:.5;
+  width:100vw;
+  height:100vh;
+}
+
+/************************* CONTAINER B - MAIN PAGE *************************/
+
+/*map css*/
+
+#map {
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height:100%;
+}
+
+.sidebar {
+  position: absolute;
+  border-radius: 3px;
+  width: 25%;
+  height: 95%;
+  z-index:1;
+  background-color: #444444;
+  margin: 10px;
+  box-shadow: 1px 2px 3px #333333;
+}
+
+.sidebar .sideA , .sideB ,.sideC ,.sideD {
+	margin:20px;
+
+}
