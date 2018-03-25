@@ -62,7 +62,35 @@ p{
 	position: absolute;
 	bottom:0;
 	right:0;
-	margin:10px;
+	margin:20px;
+}
+
+#btn_prev1 , #btn_prev2 , #btn_prev3{
+	position: absolute;
+	bottom:0;
+	left:0;
+	margin:20px;
+	font-weight: normal;
+	background-color: #222222;
+	color: #F6CB11;
+}
+
+#btn_prev1:hover , #btn_prev2:hover , #btn_prev3:hover{
+	background-color: #F6CB11;
+	color:#222222;
+	transition: 0.5s ease;
+}
+
+#btn_selectvehicle {
+	font-weight: normal;
+	font-size:20px;
+	float:right;
+}
+
+.inputdate{
+	padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
 }
 
 /************************* CONTAINER A - TITLE PAGE *************************/
@@ -152,10 +180,9 @@ p{
 /*map css*/
 
 #map {
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height:100%;
+    width: 100vw;
+    height: 100vh;
+    position:absolute;
 }
 
 .sidebar {
@@ -163,7 +190,7 @@ p{
   border-radius: 3px;
   width: 25%;
   height: 95%;
-  z-index:1;
+  z-index:3;
   background-color: #444444;
   margin: 10px;
   box-shadow: 1px 2px 3px #333333;
@@ -172,4 +199,44 @@ p{
 .sidebar .sideA , .sideB ,.sideC ,.sideD {
 	margin:20px;
 
+}
+
+.selectvehicle{
+	width:100%;
+}
+
+#ctn_load{
+	display:none;
+	position:absolute;
+	height:100%;
+	width:100%;
+	z-index:3;
+	background-color: black;
+	opacity: 0.6;
+}
+
+#ctn_loadgif{
+	position:absolute;
+	top:40%;
+	left:45%;
+	z-index:3;
+	display:none;
+	text-align: center;
+}
+
+#ctn_load img{
+	display:block;
+	margin:0;
+	float:right;
+}
+
+
+
+
+/************************* MEDIA QUERIES *************************/
+
+@media (max-width: 767px){
+	.sidebar{
+		
+	}
 }
