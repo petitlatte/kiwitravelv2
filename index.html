@@ -5,15 +5,19 @@
 
 <head>
 	    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	    <title> Kiwi Travel | Vehicle Rent Application </title>
 		<link rel="stylesheet" type="text/css" href="css/slick.css"/>
 		<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 		<!--MAPBOX CDN-->
 		<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
 		<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
-		<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />		
+		<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+		<!--JQUERY MODAL-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />		
 		<!--CUSTOM CSS-->
-		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.min.css">
 </head>
 
 
@@ -57,7 +61,7 @@
 		<div class = "sideA">
 			<img src ="img/logo.png" class="logo" alt = "kiwi travel logo">
 			<h2>Welcome to the Kiwi Travel Vehicle Rental App.</h2>
-			<p>Here you will be able to find your ideal vehicle and calculate the estimate of your trip.</p>
+			<p>We are here to help you find your ideal vehicle and calculate the estimated cost of your trip.</p>
 			<p>We will ask you for your:</p>
 				<ul>
 	    		<li>Your intended travel location</li> 
@@ -65,6 +69,7 @@
 	    		<li>Number of seats required</li>
 	    		<li>Your choice of vehicle</li>
 	    		</ul>
+	    	<p>To begin, click or type on the map your travel locations.</p>	
 			<button class = "btn" id = "btn_next1">Next</button>
 		</div>
 
@@ -75,39 +80,163 @@
 
 			<label for="pickupdate"><h3>*Pick-up Date:<h3></label>
 				<input type="date" name="pickupdate" id="pickupdate" class = "inputdate">
-
   				<label for="dropoffdate"><h3>*Drop off Date:<h3></label>
   				<input type="date" name="dropoffdate" id="dropoffdate" class = "inputdate">
   				<p>*required fields</p>
+  				<h2 class = "h2_result_days"></h2>
+
+    			<div id="ctn_error">
+    			<p>Oops! Looks like you picked more than the maximum length. Please try again.</p>
+    			</div>
 
     	<button class = "btn" id = "btn_prev1">Back</button>
 		<button class = "btn" id = "btn_next2">Next</button>
 		</div>
 		
 		<div class = "sideC">
-		<h2>Select the number of passengers</h2>
+		<h2>Select the number of seats</h2>		
+		<div class = "container">
+			<div id="ctn_passenger">
+          		<div id="icon_person"><img src ="img/person_icon001.png"></div>
+
+				<div class="number-input">
+          		<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+            	  <input type="number" name="seats" min="1" max="6" id="number_select">
+            	  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+            	</div>
+
+			</div>
+		</div>
+
     	<button class = "btn" id = "btn_prev2">Back</button>					
 		<button class = "btn" id = "btn_next3">Next</button>			
 		</div>
 		
 		<div class = "sideD">
 		<h2>Select your vehicle</h2>
-			<img src= "img/placeholder.png" class = "selectvehicle">
-			<button class = "btn" id="btn_selectvehicle">Browse Vehicles</button>
+	        		<div id="ctn" class="ctn_align">
+            		<img src= "img/placeholder.png" class = "selectedvehicle">
+              		<h2 class ="selectedvehiclename">No vehicles selected</h2>
+              		<h2 class="h2_result_dayprice" id="h2_result"></h2>
+
+              		 <a href="#modal_sample" rel="modal:open">
+                 	<button class = "btn_selectvehicle btn" id="btn_selectvehicle">Browse Vehicles</button>
+                	</a>
+            	</div>
     	<button class = "btn" id = "btn_prev3">Back</button>					
 		<button class = "btn" id = "btn_next4">Calculate</button>			
 		</div>
 
-		<div class = "sideE">
-		<h2>Your search results</h2>			
-		<button class = "btn" id = "btn_finish">Finish</button>			
-		</div>		
+	<div class = "sideE">
+				<h2>Your search results</h2>
 
+		<div class = "container">
+		<img src= "img/placeholder.png" class = "selectedvehicle">
+		<div id = "ctn_result">
+		<h2 class ="selectedvehiclename">N/A</h2></div>
+		<div id = "ctn_result">
+		<p class="h2_result_dayprice" id="h2_result"></p></div>
+		
+		<hr>
+		<div id = "ctn_result">
+			<p>Total Distance: </p></div> 
+				<div id = "ctn_result">
+			<p class="h2_result_distance" id="h2_result">N/A</p>
+		</div>
+		<br> 
+		<div id = "ctn_result">
+		<p>Total Travel Days: </p></div>
+			<div id = "ctn_result">
+			<p class = "h2_result_days" id="h2_result">N/A</p>
+		</div>
+		<br> 
+		<div id = "ctn_result">
+			<p>Total Rent Cost: </p></div>
+			<div id = "ctn_result"> 
+			<p class="h2_result_totalrentcost" id="h2_result">N/A</p>
+		</div>
+		<br>
+		<div id = "ctn_result">
+			<p>Estimated Fuel Cost: </p></div>
+			<div id = "ctn_result">
+			<p class="h2_result_fuelcost" id="h2_result">N/A</p>
+			</div>
+		<br>
+		<hr>
+
+	<div id = "ctn_result">
+		<h2 class="h3_resulttitle">Total Cost: </h2></div>
+	<div id = "ctn_result">	
+		<h2 class="h2_result_totalcost">N/A</h2>
 	</div>
+</div>
+	<p class = "referencetext">To book this vehicle, please call us on +64 4 462 8000 with the following reference number:</p>
+	<br>
+		<!--REFERENCE NUMBER -->
+		<div class = "ref-container">
+		<h2 class ="h2_ref">#</h2>
+		<h2 id ="h2_alpha1" class="h2_ref">A</h2>
+		<h2 id ="h2_alpha2" class="h2_ref">B</h2>
+		<h2 id ="h2_number1" class="h2_ref">1</h2>
+		<h2 id ="h2_number2" class="h2_ref">2</h2>
+		<h2 id ="h2_number3" class="h2_ref">3</h2>
+		<h2 id ="h2_number4" class="h2_ref">4</h2>
+		</div>	
+
+		<button class = "btn" id = "btn_finish">Finish</button>
+	
+</div>
 
 </section>
 
 </main>	<!--MAIN CONTENT END -->	
+
+<!--****MODAL****-->
+
+			<div id="modal_sample" class="modal">
+				<h2>Vehicle Options</h2>
+				<div id="ctn_modal">
+
+				<div class="ctn_select_motorbike">
+				<img src="img/motorbike.png" width="200px" class="select_motorbike" id="modal_images">
+						<div id = "ctn_result"><img src= "img/icon.png" id = "modal_icon"></div><div id = "ctn_result"><h2>Honda CB1100 - $109 / day</h2></div>
+				<p class = "p_description">The CB1100 shows off its powerful 1,140cc inline four-cylinder engine rather than hiding it behind bulky bodywork, and a generous 14-litre fuel tank means you can ride the highways all day (or night) long. This reworked classic offers the same timeless style as its popular predecessors, but adds to the mix a whole list of innovations to give extra power, torque and performance. It’s a bike that a whole new generation of riders is going to appreciate.</p>
+				</div>
+				
+				<div class="ctn_select_smallcar">
+				<img src="img/smallcar.png" width="200px" class="select_smallcar" id="modal_images">
+						<div id = "ctn_result"><img src= "img/icon.png" id = "modal_icon"></div><div id = "ctn_result"><h2>KIA Venga 1 - $129 / day</h2></div>
+				<p class = "p_description">Work or play, city or country. The Kia Venga combines the economy and performance of a compact supermini with the space and flexibility of a larger car.</p>
+				</div>
+			
+				<div class="ctn_select_largecar">
+				<img src="img/largecar.png" width="200px" class="select_largecar" id="modal_images">
+						<div id = "ctn_result"><img src= "img/icon.png" id = "modal_icon"></div><div id = "ctn_result"><h2>Toyota Highlander GXL - $144 / day</h2></div>
+				<p class = "p_description">Highlander’s bold new styling evokes the classic ruggedness of a true all-rounder recreational vehicle, making it the ideal size for modern life - not too big, not too small. With plenty of power and technology onboard too.All Highlanders, including the AWD GXL are fitted with powerful 3.5 litre petrol V6 engines, making this mid-size SUV a thoroughly usable lifestyle vehicle and the perfect towing partner.</p>
+				</div>
+
+				<div class="ctn_select_motorhome">
+				<img src="img/motorhome.png" width="200px" class="select_motorhome" id="modal_images">
+						<div id = "ctn_result"><img src= "img/icon.png" id = "modal_icon"></div><div id = "ctn_result"><h2>Frontier 6 Berth Campervan - $200 / day</h2></div>
+				<p class = "p_description">Be the envy of other campers when you pull up in this brilliant 6 berth motorhome! The large windows around the living area will provide you with an awesome view each morning, along with a kitchen and bathroom! Hire the Berth Frontier for your next New Zealand adventure.</p>
+				</div>
+
+				<!-- <div id="ctn_error" class="ctn_error_noresult"><p class="p_white_small">Sorry, we couldn't find any results. Please try another search.</p> -->
+				</div>
+
+
+
+
+			</div>
+
+		</div><!--MODAL STRUCTURE ENDS-->
+
+
+
+
+
+
+<!-- CALCULATING LOADING SCREEN -->
 
 	<div id="ctn_load"></div>
 		<div id="ctn_loadgif">
@@ -117,17 +246,15 @@
 
 
 
-
-
-
-
 <!--***PLUG-INS***-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<script type="text/javascript" src="js/slick.min.js"></script>
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
 
 
 <!--***EXTERNAL JS FILE LINKS***-->
+	<script src="js/data.js"></script>
 	<script src= "js/map.js"></script>
 	<script src="js/slideshow.js"></script>
 	<script src="js/script.js"></script>
